@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>3d旋转变换轮播图</title>
+        <style id="oCss">
+        	*{
+        		margin: 0;
+        		padding:0;
+        	}
+        	li{
+        		list-style: none;
+        	}
+        	body{
+
+        	}
+        	.banner{
+        		width: 800px;
+        		margin: 200px auto;
+        		perspective: 820px;
+				perspective-origin: 50% 50%;
+        	}
+        	.slide_list{
+        		position: relative;  		
+        		height: 360px;
+        		transition: 1s;
+        		transform-style: preserve-3d;
+				transform-origin:50% 50% -180px;
+				transform: rotateY(0deg);
+        	}
+        	.slide_list li{
+				position: absolute;
+				width: 800px;
+				height: 360px;
+				transform-style: preserve-3d;
+    			transform-origin: 50% 50% -180px;
+    			transform: rotateY(0deg);	
+        	}
+        	 .slide_list li:nth-of-type(1){
+        	 	left: 0;
+        	 	top: -360px;
+    			transform: rotateX(90deg);
+    			transform-origin: bottom;
+        	}
+        	.slide_list li:nth-of-type(2){
+        		left: 0;
+        		top: 360px;
+        		transform: rotateX(-90deg) ;
+        		transform-origin: top;
+        	}
+        	.slide_list li:nth-of-type(3){
+        		left: 0;
+        		top: 0;
+        	}
+        	 .slide_list li:nth-of-type(4){
+        	 	left: 0;
+        	 	top: 0;
+        		transform: translateZ(-360px); 
+        	} 
+        	.slide_list li div{
+        		float:left;
+        		width: 40px;
+        		height: 360px;
+        	}
+        	.slide_list li:nth-of-type(1) div{
+        		background-image:url("img/1.jpg");
+        	}
+        	 .slide_list li:nth-of-type(2) div{
+        		background-image:url("img/2.jpg");
+        	} 
+        	 .slide_list li:nth-of-type(3) div{
+        		background-image:url("img/3.jpg");
+        	} 
+        	 .slide_list li:nth-of-type(4) div{
+        		background-image:url("img/4.jpg");
+        		transform: rotateX(180deg);
+        	} 
+        	.page{
+        		text-align: center;
+        		margin: 40px 0;
+        	}
+        	.page li{
+        		display: inline-block;
+        		width: 40px;
+        		height: 40px;
+        		border-radius: 50%;
+        		background:#ccc;
+        		margin: 0 10px;
+        	}
+        	.page .active{
+        		background: #333;
+        	}
+        </style>
+    </head>
+    <body>
+    	<div class="banner">
+    		<ul class="slide_list" id="slide_list">
+    			<li></li>
+    			<li></li>
+    			<li></li>
+    			<li></li>
+    		</ul>
+    		<ol class="page" id="page">
+    			<li class="active"></li>
+    			<li></li>
+    			<li></li>
+    			<li></li>
+    		</ol>
+    	</div>
+    	<script>
+    		var slide_list=document.getElementById("slide_list");
+    		var slideLi=slide_list.getElementsByTagName("li");
+    		var oPss=document.getElementById("oCss");
+    		var page=document.getElementById("page");
+    		var pageLi=page.getElementsByTagName("li");
+    		var mun=20;
+    		var html='',oPss='',addCss='';
+
+			for(var i=0;i<20;i++){
+				html+='<div></div>';
+				oPss+='.slide_list li div:nth-of-type('+(i+1)+'){background-position:'+i*-40+'px 0;}';
+
+			}
+			for(var i=0;i<slideLi.length;i++){
+    			slideLi[i].innerHTML=html;
+    		}
+			oCss.innerHTML+=oPss;
+			for(var i=0;i<pageLi.length;i++){
+				pageLi[i].index=i;
+				pageLi[i].onclick=function(){
+					for(var k=0;k<pageLi.length;k++){
+						pageLi[k].className='';
+					}
+					this.className="active";
+					slide_list.style.transform='rotateX('+this.index*-90+'deg)';
+					//console.log(this.index);
+				}
+			}
+    		
+    	</script>
+    </body>
+</html>
