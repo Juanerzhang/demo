@@ -2,9 +2,147 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>人机对话</title>
+	<style>
+		*{margin:0;padding:0;}
+		html. body{height: 100vh;overflow: hidden;}
+		body{background: url('img/bg.jpg') top center;}
+		div{box-sizing:border-box;}
+		.wrap{width:800px;height:600px;margin:100px auto;background: rgba(255,255,255,.6);border-radius:5px;}
+		.b_body{height: 510px;overflow: auto;margin-bottom: 10px;padding:20px;}
+		.b_body div{position: relative;width:100%;overflow: hidden;margin:2px 0;}
+		.b_body div span{background-position: top center;background-size:100%;width:30px;height: 30px;border-radius:50%;position: absolute;top:0;}
+		.b_body div p{display: inline-block;padding:0 5px;line-height: 30px;}
+		.roboMes{padding-left:40px;}
+		.roboMes span{background-image:url("img/robot.jpg");left:0;}
+		.roboMes p{background:green;}
+		.serviceMes{padding-right: 40px;}
+		.serviceMes span{background-image:url("img/service.jpg");right:0;}
+		.serviceMes p{background:yellow;float:right;}
+		.send{border-top:1px solid #ccc;padding:20px;display:flex;justify-content: center;align-content: center;}
+		.send .text{line-height: 30px;padding:0 10px;border-radius:5px;border:none;width:625px;margin:0 5px;}
+		.send .btn{border:none;line-height: 30px;padding:0 20px;background: #10776f;color:#fff;}
+		.photo{width:30px;height: 30px;line-height: 30px;}
+		.photo img{width:30px;border-radius:50%;}
+	</style>
 </head>
 <body>
-	
+	<div class="wrap">
+		<div class="b_body" id="b_body">
+			<div class="roboMes">
+				<span></span>
+				<p>你好</p>
+			</div>
+		</div>
+		<div class="send" id="send">
+			<span class="photo" ><img id="photo" src="img/robot.jpg" alt=""></span>
+			<input type="text" class="text" id="text">
+			<button class="btn" id="btn">发送</button>
+		</div>
+	</div>
+	<script>
+		var b_body=document.getElementById("b_body"),
+			text=document.getElementById("text"),
+			btn=document.getElementById("btn"),
+			photo=document.getElementById("photo"),
+			onoff=true;
+			photo.onclick=exchang;
+			function exchang(){
+				if(!onoff){
+					photo.src="img/robot.jpg";
+				}else{
+					photo.src="img/service.jpg";
+				}
+				text.focus();
+				onoff=!onoff;
+			}
+			
+
+			window.onload=function(){
+				text.focus();
+				//鼠标点击发送
+				btn.onclick=sendMessage
+				//键盘回车发送
+				document.onkeydown=function(e){
+					var e= e || window.event || arugments.callee.caller.arugments[0];
+					if(e && e.keyCode==13){
+						sendMessage();
+					}
+				}
+
+				function sendMessage(){
+					html='';
+					if(text.value==null||text.value==''){
+						return;
+					}else if(!onoff){
+						html+='<div class="serviceMes"><span></span><p>'+text.value+'</p></div>'
+					}else{
+						html+='<div class="roboMes"><span></span><p>'+text.value+'</p></div>'
+					}
+					b_body.innerHTML+=html;
+					text.value='';
+					b_body.scrollTop = b_body.scrollHeight;
+				}
+			}
+
+		//封装ajax
+		function ajax(obj){
+			var xhr=(function(){
+				if(typeof XMLHttpRequest !=='undefined'){  //判断XMLHttpRequest是否存在
+					return new XMLHttpRequest();   //存在，则返回
+				}else if(typeof ActiveXObject !=='undefined'){  //判断ActiveXObject是否存在
+					var version=[    //ActiveXObject版本
+						'MSXML2.XMLHttp.6.0',
+						'MSXML2.XMLHttp.3.0',
+						'MSXML2.XMLHttp'
+					];
+					for(var i=0;i<version.length;i++){  //查询
+						try{
+							return new ActiveXObject(version[i]);   //返回
+						}catch(e){ 
+							//跳过；
+						}
+					}
+				}else{
+					alert("您的系统或浏览器不支持XHR对象！");
+				}
+			})();  
+			var url=obj.url+'?rand='+Math.random();   //定义url
+			var data=(function(data){
+				var arr=[];   //定义一个数组存储
+				for(var i in arr){  //遍历数组
+					arr.push(encodeURIComponent(i) +'='+ arr[i].encodeURIComponent())  //编译data数据
+				}
+				return arr.join("&");
+			})(obj.data)
+			if(obj.method==='get'){
+				obj.data+=obj.data.indexOf("?")==-1?'?'+obj.data:'&'+obj.data;
+			}
+			if(obj.async===true){
+				xhr.onreadystatechange=function(){
+					if(xhr.readyState==4){
+						callback();
+					}
+				}
+			}
+			ajax(obj.method,obj.url,obj.async);
+			if(obj.method==='post'){
+				xhr.setRequestHeader("Content-Type","application/x-www-form-urlencode");
+				xhr.send(obj.data);
+			}else{
+				xhr.send(null);
+			}
+			if(obj.async===flase){
+				callback();
+			}
+			function callback(){
+				if(xhr.status==200){
+					obj.success(xhr.responesText);
+				}else{
+					alert("获取数据错误，错误代码："+xhr.status+"，错误信息为："+xhr.statusText);
+				}
+			}
+		}
+	</script>
 </body>
 </html>
