@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style>
+        	ul, li{list-style:none;margin:0;padding:0;}
+        	#list li{position:relative;float:left;width:150px;height: 100px;margin-right: 20px;}
+        	#list li img{width:100%;height: 100%;position: relative;z-index: 1;}
+        	div{position: absolute;top:50px;left:100px;background:pink;z-index:10;display: none;width:200px;height: 120px;}
+
+        </style>
+        <script>
+        	window.onload=function(){
+        		var oUl=document.getElementById("list"),
+        			aLi=oUl.getElementsByTagName("li"),
+        			len=aLi.length;
+        		for(var i=0;i<len;i++){
+        			aLi[i].style.zIndex='1';
+        			aLi[i].onmouseover=function(){
+        				var oDiv=this.getElementsByTagName("div")[0];
+        				this.style.zIndex=2;
+        				oDiv.style.display="block";
+        			}
+        			aLi[i].onmouseout=function(){
+        				var oDiv=this.getElementsByTagName("div")[0];
+        				this.style.zIndex=1;
+        				oDiv.style.display="none";
+        			}
+        		}
+        	}
+        </script>
+    </head>
+    <body>
+    <ul id="list">
+    	<li>
+    		<img src="img/1.jpg" alt="">
+    		<div class="info_div">
+    			隐藏内容一
+    		</div>
+    	</li>
+    	<li>
+    		<img src="img/2.jpg" alt="">
+    		<div class="info_div">
+    			隐藏内容二
+    		</div>
+    	</li>
+    	<li>
+    		<img src="img/3.jpg" alt="">
+    		<div class="info_div">
+    			隐藏内容三
+    		</div>
+    	</li>
+    	<li>
+    		<img src="img/4.jpg" alt="">
+    		<div class="info_div">
+    			隐藏内容四
+    		</div>
+    	</li>
+    </ul>
+    </body>
+</html>

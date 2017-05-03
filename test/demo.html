@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style>
+        	div{width: 50px;height: 50px;position: absolute;}
+        </style>
+        <script>
+        	
+        	window.onload=function(){
+        		//10*10的div排布
+        		var arrColor=['red','yellow','green','pink'];
+        		var str='';  //用于存储注入的html
+        		for(var i=0;i<100;i++){
+        			str+='<div style="top:'+Math.floor(i/10)*50+'px;left:'+(i%10)*50+'px;background:'+arrColor[(i%3)]+'">'+(i+1)+'</div>';
+        		}
+        		document.body.innerHTML=str;
+        	}
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

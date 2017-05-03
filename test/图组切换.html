@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>图组切换</title>
+        <style>
+        	div, li, p{margin:0;padding:0;}
+        	a{text-decoration: none;}
+        	.top {width: 800px;margin:0 auto;}
+        	.top a{display: inline-block;padding:0 5px;border:1px solid #333;color: #333;line-height: 24px;}
+        	.content{width: 800px;margin:20px auto;overflow: hidden;}
+        	.content .left{width: 400px;float: left;position: relative;}
+        	.content .right{width:120px;float: right;position: relative;}
+        	.content img{height: 180px;}
+        	.content .left img{width: 400px;}
+        	.content .right img{width: 120px;}
+        	.content span, .content p{display: block;line-height: 30px;color:#999;}
+			.content a{position: absolute;width: 50%;height: 180px;top:0;background: rgba(0, 0, 0, 0);}
+			.content .prev{left:0;}
+			.content .next{right: 0;}
+
+        </style>
+        <script>
+        	window.onload=function(){
+        		var oContent=document.getElementById("content"),
+        			oTop=document.getElementById("top"),
+        			aTopa=oTop.getElementsByTagName("a"),
+        			oPrevl=document.getElementById("prevl"),
+        			oNextl=document.getElementById("nextl"),
+        			oPrevr=document.getElementById("prevr"),
+        			oNextr=document.getElementById("nextr"),
+        			aDiv=oContent.getElementsByTagName("div"),
+        			aImg=oContent.getElementsByTagName("img"),
+        			aSpan=oContent.getElementsByTagName("span"),
+        			aP=oContent.getElementsByTagName("p"),
+        			arrA=null,
+        			arrDiv=null;
+        		var arrUrl=[
+        			['img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg'],
+        			['img/zly1.jpg','img/zly2.jpg','img/zly3.jpg','img/zly4.jpg','img/zly5.jpg',]
+        		];
+        		arrText=[
+        			['第一组第一张','第一组第二张','第一组第三张','第一组第四张'],
+        			['第二组第一张','第二组第二张','第二组第三张','第二组第四张','第二组第五张']
+        		];
+        		var num=[0,0];
+        		//初始化
+        		/*function imgTab(){
+	        		for(var i=0;i<arrUrl.length;i++){
+	        			aImg[i].src=arrUrl[i][num[i]];
+	        			aSpan[i].innerHTML=(num[i]+1)+'/'+arrUrl[i].length;
+	        			aP[i].innerHTML=arrText[i][num[i]];
+	        		}
+        		}
+        		imgTab();*/
+        		function imgTabL(){
+        			aImg[0].src=arrUrl[0][num[0]];
+        			aSpan[0].innerHTML=(num[0]+1)+'/'+arrUrl[0].length;
+        			aP[0].innerHTML=arrText[0][num[0]];
+        		}
+        		function imgTabR(){
+        			aImg[1].src=arrUrl[1][num[1]];
+        			aSpan[1].innerHTML=(num[1]+1)+'/'+arrUrl[1].length;
+        			aP[1].innerHTML=arrText[1][num[1]];
+        		}
+        		imgTabL();
+        		imgTabR();
+        		//两组一起切换
+        		for(var i=0;i<aTopa.length;i++){
+        			aTopa[0].onclick=prev;
+        			aTopa[1].onclick=next;
+        		}
+        		function prev(){
+    				for(var i=0;i<aTopa.length;i++){
+    					num[i]--;
+        				if(num[i]==-1){
+        					num[i]=arrUrl[i].length-1;
+        				}
+        				imgTabL();
+        				imgTabR();
+    				}	
+    			}
+    			function next(){
+    				for(var i=0;i<aTopa.length;i++){
+        				num[i]++;
+        				if(num[i]==arrUrl[i].length){
+        					num[i]=0;
+        				}
+        				imgTabL();
+        				imgTabR();
+        			}
+    			}
+    			//单组自己切换
+    			oPrevl.onclick=function(){
+    				num[0]--
+    				if(num[0]==-1){
+    					num[0]=arrUrl[0].length;
+    				}
+    				imgTabL();
+    			}
+    			oNextl.onclick=function(){
+    				num[0]++
+    				if(num[0]==arrUrl[0].length){
+    					num[0]=0;
+    				}
+    				imgTabL();
+    			}
+
+    			oPrevr.onclick=function(){
+    				num[1]--
+    				if(num[1]==-1){
+    					num[1]=arrUrl[1].length;
+    				}
+    				imgTabR();
+    			}
+    			oNextr.onclick=function(){
+    				num[1]++
+    				if(num[1]==arrUrl[1].length){
+    					num[1]=0;
+    				}
+    				imgTabR();
+    			}
+
+        	}
+        </script>
+    </head>
+    <body>
+    <div class="top" id="top">
+    	<a href="javascript:;">上一组</a>
+    	<a href="javascript:;">下一组</a>
+    </div>
+    <div class="content" id="content">
+    	<div class="left" id="left">
+    		<img src="" alt="">
+    		<a id="prevl" class="prev" href="javascript:;"></a>
+    		<a id="nextl" class="next" href="javascript:;"></a>
+    		<span></span>
+    		<p></p>
+    	</div>
+    	<div class="right" id="right">
+    		<img src="" alt="">
+    		<a id="prevr" class="prev" href="javascript:;"></a>
+    		<a id="nextr" class="next" href="javascript:;"></a>
+    		<span></span>
+    		<p></p>
+    	</div>
+    </div>
+    </body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style>
+        	.content{width:400px;margin:40px auto;}
+        	.content .way{text-align: center;}
+        	.content a{display: inline-block;padding:0 10px;line-height: 24px;border:1px solid #eee;color:#666;border-radius: 6px;text-decoration: none;}
+        	.content p{line-height: 30px;height: 30px;}
+        	.imgWrap{width:400px; height: 400px;position:relative;}
+        	.imgWrap img{width:400px;height: 400px;}
+        	.imgWrap .text{position: absolute;bottom:0;left:0;width:100%;line-height: 30px;height: 30px;background: rgba(0,0,0,.5);color: #fff;font-size: 14px;text-align: center;margin:0;}
+        	.bottom_content{text-align: center;}
+        	#span1{width:400px;display: block;height: 30px;line-height: 30px;font-size: 14px;}
+        </style>
+        <script>
+        	window.onload=function(){
+        		var oLoop=document.getElementById("loop"),
+        			oNoloop=document.getElementById("noloop"),
+        			oImg=document.getElementById("img1"),
+        			oText=document.getElementById("text"),
+        			oSpan=document.getElementById("span1"),
+        			oPrev=document.getElementById("prev"),
+        			oNext=document.getElementById("next"),
+        			oText2=document.getElementById("text2");
+        		var num=0   //用于存储图片的下标值
+        		var isLoop=true;
+        		var arrUrl=['img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg','img/5.jpg'];
+        		var arrText=['文字一','文字二','文字三','文字四','文字五'];
+
+        		function tabImg(){
+        			oImg.src=arrUrl[num];
+        			oText.innerHTML=arrText[num];
+        			oSpan.innerHTML=(num+1)+'/'+arrText.length;
+        		}
+        		tabImg();
+        		oLoop.onclick=function(){
+        			isLoop=true;
+        			oText2.innerHTML="现在是：循环播放！";
+        		}
+        		oNoloop.onclick=function(){
+        			isLoop=false;
+        			oText2.innerHTML="现在是：顺序播放！";
+        		}
+
+        		//上一张
+        		oPrev.onclick=function(){
+        			num--;
+        			console.log(num);
+    				if(num==-1){
+    					if(isLoop){
+    						num=arrText.length-1;
+    					}else{
+    						num=0;
+    						alert("这已经是第一张了，前面没有了！");
+    					}
+    				}
+    				tabImg();		
+        		}
+
+        		//下一张
+        		oNext.onclick=function(){
+        			num++
+        			if(num==arrText.length){
+        				if(isLoop){
+        					num=0
+        				}else{
+        					num=arrText.length-1;
+        					alert("这已经是最后一张脸，后面没有了！");
+        				}
+        			}
+        			tabImg();
+        		}
+        	}
+        </script>
+    </head>
+    <body>
+    	<div class="content" id="content">
+    		<div class="way">
+    			<a id="loop" href="javascript:;">循环播放</a>
+    			<a id="noloop" href="javascript:;">顺序播放</a>
+    			<p id="text2">现在是：循环播放</p>
+    		</div>
+    		<div class="imgWrap">
+    			<img id="img1" alt="图片">
+    			<p class="text" id="text"></p>
+    		</div>
+    		<div class="bottom_content">
+    			<span id="span1"></span>
+    			<a id="prev" href="javascript:;">上一张</a>
+    			<a id="next" href="javascript:;">下一张</a>
+    		</div>
+    	</div>
+    </body>
+</html>

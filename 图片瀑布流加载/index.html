@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,user-scalable=0,maximum-scale=1.0,minimum-scale=1,initial-scale=1.0">
+        <style>
+        	*{margin:0;;padding:0;}
+        	body{background:#ddd;}
+        	.wrap{
+        		position: relative;
+        		width: 1000px;
+        		margin:50px auto;
+        	}
+        	.wrap .items{
+        		position: absolute;
+        		width: 200px;
+        		border: 4px solid #fff;
+        	}
+        	.wrap .items img{
+        		width: 100%;
+        		display: block;
+        	}
+        </style>
+    </head>
+    <body>
+    	<div class="wrap" id="wrap"></div>
+    	<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    	<script>
+    		var url='http://image.baidu.com/search/acjson?tn=resultjson_com&ipn=rj&word=宠物&callback=?';  //百度图片接口
+    		var page =1 ;  //请求数据的分页
+    		var cells =4;  //存储具体的列数
+    		var width=200;   //item 的宽度
+    		var space=16;   //间隙
+    		var outerW=width+space //没列的宽度
+    		var arrL=[];  //存储每个items定位的left值
+    		var arrT=[];  //存储每个items定位的top值;
+    		//获取cells的值
+    		function getCells(){
+    			cells=Math.floor(window.innerWidth/outerW);
+    			if(cells<3){
+    				cells=3;
+    			}
+    			if(cells>6){
+    				cells=6;
+    			}
+    			$("#wrap").width(cells*outerW-space);
+	    	}
+	    	getCells();
+    		//响应式变列数
+    		$(window).on("resize",function(){
+    			var oldCells=cells; //保存原来的列数
+    			getCells();  //重新对cells赋值；
+    			console.log(cells);
+    			if(oldCells==cells) return;
+
+    			//清空原来保存定位的数组，再重新赋值
+    			arrL=[];
+    			arrT=[];
+    			for(var i=0;i<cells;i++){
+	    			arrT.push(0);  //第一排的top 都为0
+	    			arrL.push(i*outerW);
+	    		}
+	    		//对每个Items重新定位
+	    		var $items=$("#wrap").find(".items");
+	    		$items.each(function(){
+	    			var minIndex=getMinIndex(arrT);
+	    			$(this).animate({
+	    				left:arrL[minIndex],
+	    				top:arrT[minIndex]
+	    			},"slow");
+	    			arrT[minIndex]+=$(this).height()+space;
+	    		})
+    			
+    		})
+
+    		//第一排图片的位置
+    		for(var i=0;i<cells;i++){
+    			arrT.push(0);  //第一排的top 都为0
+    			arrL.push(i*outerW);
+    		}
+    		//console.log(arrL);
+    		//找到数组中高度最小的元素和位置
+    		function getMinIndex(arr){
+    			var value=arr[0];
+    			var index=0;
+    			for(var i=0;i<arr.length;i++){
+    				if(value>arr[i]) {
+    					value=arr[i];
+    					index=i;
+    				}
+    			}
+    			return index;
+    		}
+    		//懒加载
+    		$(window).on("scroll",function(){
+    			var H =$(document).height();
+	    		var t=$(window).scrollTop();
+	    		var h=$(window).height();
+	    		if(H<t+h+100){
+	    			page++;
+	    			loadImg();
+	    		}
+    		})
+
+    		//通过接口请求数据
+    		function loadImg(){
+    			$.getJSON(url,{pn:page},function(res){
+    				//console.log(res);
+    				var data=res.data;
+    				data.forEach(function(obj,index){
+    					//console.log(obj.hoverURL);
+    					var $items=$('<div class="items"><img src="'+obj.hoverURL+'" alt="" /></div>');
+    					var minIndex=getMinIndex(arrT);
+    					//console.log(minIndex)
+    					$items.animate({
+    						left:arrL[minIndex],
+    						top:arrT[minIndex]
+    					},"slow");
+
+    					$("#wrap").append($items);
+    					//arrTop加上top高度
+    					arrT[minIndex]+=$items.height()+space;
+    				})
+    			})
+    		}
+    		loadImg();
+    	</script>
+    </body>
+</html>

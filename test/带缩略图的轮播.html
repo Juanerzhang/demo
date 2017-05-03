@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>带缩略图的轮播</title>
+        <style>
+        	div, ul, li{margin:o;padding:0;}
+        	li{list-style:none;}
+        	a{text-decoration: none;}
+        	body{background: #f1f1f1;}
+        	#content{width:800px;margin:100px auto;position: relative;}
+        	#content img{width:800px;height: 360px;}
+        	#content span, #content p{position: absolute;left:0;width:100%;height: 30px;line-height: 30px;background: rgba(0, 0, 0, .5);text-align: center;color:#fff;}
+        	#content span{top:0;}
+        	#content p{bottom: 0;margin:0;}
+        	#content a{color: #fff;position: absolute;top:160px;width:40px;height: 40px;background: rgba(22, 22, 22, .5);text-align: center;line-height: 40px;}
+        	#content a:hover{background: rgba(249, 186, 10, .5);}
+        	#prev{left:10px;}
+        	#next{right: 10px;}
+        	#list{text-align: center;width: 800px;margin:0 auto;}
+        	#list li{ padding:20px;margin:0 5px;position: relative;display: inline-block;}
+        	#list li a{width:10px;height: 10px;border-radius: 50%;background: #ccc;display: block;}
+        	#list .active a{background: #F1CF12;}
+        	#list div{position: absolute;top:-30px;left:-20px;width: 80px;height:36px;border: 3px solid #fff;display: none; }
+        	#list div img{width: 100%;}
+        	#list li:hover div{display: block;}
+        </style>
+        <script>
+        	window.onload=function(){
+        		var oDiv=document.getElementById("content"),
+        			oImg=oDiv.getElementsByTagName("img")[0],
+        			oSpan=oDiv.getElementsByTagName("span")[0],
+        			oP=oDiv.getElementsByTagName("p")[0],
+        			oPrev=document.getElementById("prev"),
+        			oNext=document.getElementById("next"),
+        			oUl=document.getElementById("list"),
+        			aLi=oUl.getElementsByTagName("li");
+        		var num=0;
+        		var arrUrl=['img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg']
+        		var arrText=['第一副图','第二副图','第三副图','第四副图'];
+        		//var html="";
+        		//初始化
+        		for(var i=0;i<arrUrl.length;i++){
+        			oUl.innerHTML+='<li><a href="javascript:;"></a><div><img src="'+arrUrl[i]+'" alt="" /></div></li>';
+        		}
+        		function imgTab(){
+	        		oImg.src=arrUrl[num];
+	        		oSpan.innerHTML=(1+num)+'/'+arrUrl.length;
+	        		oP.innerHTML=arrText[num];
+	        		for(var i=0;i<arrUrl.length;i++){
+	        			aLi[i].className="";
+	        		}
+	        		aLi[num].className="active";
+	        	}
+	        	imgTab();
+	        	//点点切换
+	        	for(var i=0;i<arrUrl.length;i++){
+	        		aLi[i].index=i;
+	        		aLi[i].onclick=function(){
+	        			num=this.index;
+	        			imgTab();
+	        		}
+	        	}
+	        	//左右切换
+	        	oNext.onclick=function(){
+	        		num++
+	        		num%=4;
+	        		imgTab();
+	        	}
+	        	oPrev.onclick=function(){
+	        		num--
+	        		if(num==-1){
+	        			num=arrUrl.length-1;
+	        		}
+	        		imgTab();
+	        	}
+        	}
+        </script>
+    </head>
+    <body>
+   	<div id="content">
+   		<img src="" alt="">
+   		<span></span>
+   		<p></p>
+   		<a id="prev" href="javascript:;"><</a>
+   		<a id="next" href="javascript:;">></a>
+   	</div>
+   	<ul id="list"></ul>
+    </body>
+</html>

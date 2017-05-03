@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style>
+        	ul{margin:0;padding:0;}
+        	li{list-style:none;}
+        	body{background: #333;}
+        	a{text-decoration: none;}
+        	#content{position: relative;width:800px;height: 360px;margin:50px auto;}
+        	#content img{width:100%;height: 100%;}
+        	#content span, #content p{position: absolute;left:0;width:100%;height: 30px;line-height: 30px;color:#fff;background: rgba(0, 0, 0, .5);text-align: center;}
+        	#content p{bottom:0;margin:0;}
+        	#content span{top:0;}
+        	#content ul{width:800px;text-align: center;margin:50px auto;}
+        	#content li{width:40px;height: 40px;margin:0 10px;background:#f1f1f1;display: inline-block;}
+        	#content .active{background:yellow;}
+        	#prev, #next{position: absolute;top:160px;width:40px;height: 40px;background: rgba(21,21,21,.5);color: #fff;text-align: center;line-height: 40px;font-size: 20px;}
+        	#prev{left:10px;}
+        	#next{right: 10px;}
+
+        </style>
+        <script>
+        	window.onload=function(){
+        		var oDiv=document.getElementById("content"),
+        			oImg=oDiv.getElementsByTagName("img")[0],
+        			oSpan=oDiv.getElementsByTagName("span")[0],
+        			oP=oDiv.getElementsByTagName("p")[0],
+        			oUl=oDiv.getElementsByTagName("ul")[0],
+        			aLi=oUl.getElementsByTagName("li");
+        		var oPrev=document.getElementById("prev"),
+        			oNext=document.getElementById("next");
+
+        		var num=0  //用于存储index值;
+        		var arrUrl=['img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg'];  //图片路径
+        		var arrText=['图片一','图片二','图片三','图片四'];
+        		var html='';
+
+        		for(var i=0;i<arrUrl.length;i++){
+        			html+='<li></li>';
+        		}
+        		oUl.innerHTML=html;
+
+        		//初始化
+        		function imgTab(){
+	        		for(var i=0;i<arrUrl.length;i++){
+	        			aLi[i].className="";
+	        		}
+	        		aLi[num].className='active';
+	        		oImg.src=arrUrl[num];
+	        		oSpan.innerHTML=(1+num)+'/'+arrUrl.length;
+	        		oP.innerHTML=arrText[num];
+        		}
+        		imgTab();
+        		//点击切换
+        		for(var i=0;i<arrUrl.length;i++){
+        			aLi[i].index=i;
+        			aLi[i].onclick=function(){
+        				num=this.index;
+        				imgTab();
+        			}
+        		}
+
+        		//上一张，下一张
+        		oNext.onclick=function(){
+        			num++;
+        			if(num==arrUrl.length){
+        				num=0;
+        			}
+        			imgTab();
+        		}
+        		oPrev.onclick=function(){
+        			num--;
+        			if(num==-1){
+        				num=arrUrl.length-1;
+        			}
+        			imgTab();
+        		}
+
+        	}
+        </script>
+    </head>
+    <body>
+    <div id="content">
+    	<img src="" alt="">
+    	<a id="prev" href="javascript:;"><</a>
+    	<a id="next" href="javascript:;">></a>
+    	<span></span>
+    	<p></p>
+    	<ul></ul>
+    </div>
+    </body>
+</html>
