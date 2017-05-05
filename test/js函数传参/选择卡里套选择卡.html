@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+    	<div class="content flex" id="content">
+    		<ul class="list1 flex flex-dc" id="list1">
+    			<li class="active">最热团购</li>
+    			<li>商城特惠</li>
+    			<li>名品推荐</li>
+    			<li>缤纷活动</li>
+    		</ul>
+    		<div class="out" id="out">
+    			<div class="outer">
+    				<ul class="out_list flex">
+    					
+    				</ul>
+    				<dl>
+    					<dd><img src="" alt=""></dd>
+    					<dd><img src="" alt=""></dd>
+    					<dd><img src="" alt=""></dd>
+    					<dd><img src="" alt=""></dd>
+    				</dl>
+    			</div>
+    		</div>
+    	</div>
+    	<script>
+    		window.onload=function(){
+    			var oContent=document.getElementById("content"),
+    				oUl=oContent.getElementsByTagName("ul")[0],
+    				oOut=document.getElementById("out");
+    			var arrUrl=[
+    					['img/j1.jpg','img/j2.jpg','img/j3.jpg','img/j4.jpg'],
+    					['img/j5.jpg','img/j6.jpg','img/j7.jpg','img/j8.jpg','img/j9.jpg'],
+    					['img/j10.jpg','img/j11.jpg','img/j12.jpg','img/j13.jpg','img/j14.jpg'],
+    					['img/j15.jpg','img/j16.jpg','img/j17.jpg']
+    				];
+    			var arrText=[
+    					['001活动专场','002活动专场','003活动专场','004活动专场'],
+    					['011活动专场','012活动专场','013活动专场','014活动专场','015活动专场'],
+    					['021活动专场','022活动专场','023活动专场','024活动专场','025活动专场'],
+    					['031活动专场','032活动专场','033活动专场']
+    				];
+    			//初始化
+    			var html='';
+    			for(var i=0;i<arrUrl.length;i++){
+    				html+='<div><ul class="out_list flex"></ul><dl></dl></div>'
+    			}
+    			oOut.innerHTML=html;
+    			var aDl=oOut.getElementsByTagName("dl");
+    			var aUl=oOut.getElementsByTagName("ul");
+
+    			//var html_1='';
+    			for(var i=0;i<aDl.length;i++){
+    				for(var j=0;j<arrUrl[i].length;j++){
+    					aDl[i].innerHTML+='<dd><img src="'+arrUrl[i][j]+'" alt="" /></dd>';
+    					aUl[i].innerHTML+='<li>'+arrText[i][j]+'</li>';
+    				}
+    			}
+    			var	oDiv=oContent.getElementsByTagName("div")[0],
+    				aLis=oUl.getElementsByTagName("li"),
+    				aDiv=oDiv.getElementsByTagName("div");
+
+
+
+    			tab(aLis,aDiv);
+    			var alis2=[],
+    				aDd=[];
+    			for(var i=0;i<aUl.length;i++){
+    				alis2[i]=aUl[i].getElementsByTagName("li");
+    				aDd[i]=aDl[i].getElementsByTagName("dd");
+    				tab(alis2[i],aDd[i]);
+    			}
+    			
+
+    			function tab(obj1,obj2){
+    				obj1[0].className="active";
+    				obj2[0].className="active";
+    				for(var i=0;i<obj1.length;i++){
+    					obj1[i].index=i;
+    					obj1[i].onmouseover=function(){
+    						for(var i=0;i<obj1.length;i++){
+    							obj1[i].className='';
+    							obj2[i].className='';
+    						}
+    						this.className="active";
+    						obj2[this.index].className="active";
+    					}
+    				}
+    			}
+
+
+
+    		}
+    	</script>
+    </body>
+</html>

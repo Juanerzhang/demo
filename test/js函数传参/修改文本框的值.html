@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style>
+        	div, ul, li, p{margin:0;padding:0;box-sizing: border-box;}
+        	li{list-style: none;}
+        	body{background: #eee;}
+        	.content{width:500px;margin:50px auto;}
+        	.content h2{background: #1A6908;color:#fff;font-size: 16px;line-height: 30px;text-indent: 20px;}
+        	#list{}
+        	#list li{border-bottom: 1px solid #3DC5E1;padding:5px 0 5px 20px;}
+        	#list li div{display: none;}
+        	#list li input[type="button"], #list li input[type="reset"]{color:#1A6908;border:none;background: none;}
+        	
+        </style>
+    </head>
+    <body>
+    <div class="content">
+    	<h2>课程名称</h2>
+    	<ul id="list">
+    		<li>
+    			<p>
+    				<span>妙文课堂课程1</span>
+    				<a href="javascript:;">修改</a>
+    			</p>
+    			<div>
+    				<input type="text">
+	    			<input class="btn" type="button" value="保存" >
+	    			<input class="btn" type="reset" value="取消" >
+    			</div>
+    		</li>
+    		<li>
+    			<p>
+    				<span>妙文课堂课程1</span>
+    				<a href="javascript:;">修改</a>
+    			</p>
+    			<div>
+    				<input type="text">
+	    			<input class="btn" type="button" value="保存" >
+	    			<input class="btn" type="reset" value="取消" >
+    			</div>
+    		</li>
+    		<li>
+    			<p>
+    				<span>妙文课堂课程1</span>
+    				<a href="javascript:;">修改</a>
+    			</p>
+    			<div>
+    				<input type="text">
+	    			<input class="btn" type="button" value="保存" >
+	    			<input class="btn" type="reset" value="取消" >
+    			</div>
+    		</li>
+    		<li>
+    			<p>
+    				<span>妙文课堂课程1</span>
+    				<a href="javascript:;">修改</a>
+    			</p>
+    			<div>
+    				<input type="text">
+	    			<input class="btn" type="button" value="保存" >
+	    			<input class="btn" type="reset" value="取消" >
+    			</div>
+    		</li>
+    		<li>
+    			<p>
+    				<span>妙文课堂课程1</span>
+    				<a href="javascript:;">修改</a>
+    			</p>
+    			<div>
+    				<input type="text">
+	    			<input class="btn" type="button" value="保存" >
+	    			<input class="btn" type="reset" value="取消" >
+    			</div>
+    		</li>
+    	</ul>
+    </div>
+    <script>
+    	window.onload=function(){
+    		var oList=document.getElementById("list"),
+    			aLis=oList.getElementsByTagName("li");
+    			for(var i=0;i<aLis.length;i++){
+    				tab(aLis[i]);
+    			}
+    			
+
+    			function tab(obj){
+    				var oA=obj.getElementsByTagName("a")[0],
+    					oP=obj.getElementsByTagName("p")[0],
+    					oSpan=obj.getElementsByTagName("span")[0],
+    					oDiv=obj.getElementsByTagName("div")[0],
+    					aInput=obj.getElementsByTagName("input");
+    				oA.onclick=function(){
+    					oP.style.display="none";
+    					oDiv.style.display="block";
+    					aInput[0].value=oSpan.innerHTML;
+    				}
+    				aInput[1].onclick=function(){
+    					oDiv.style.display="none";
+    					oP.style.display="block";
+    					oSpan.innerHTML=aInput[0].value;
+    				}
+    				aInput[2].onclick=function(){
+    					oDiv.style.display="none";
+    					oP.style.display="block";
+    				}
+    			}
+    	}
+    </script>
+    </body>
+</html>

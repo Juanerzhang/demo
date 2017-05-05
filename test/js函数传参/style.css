@@ -1,0 +1,29 @@
+/*
+* @Author: Juanerzhang
+* @Date:   2017-05-05 12:13:07
+* @Last Modified by:   Juanerzhang
+* @Last Modified time: 2017-05-05 14:56:10
+*/
+div, ul, li, dl, dd{margin:0;padding:0;box-sizing: border-box;}
+li{list-style: none;}
+.flex{display: -webkit-box;display: -ms-flexbox;display: flex;}
+.flex-c{}
+.flex-b{-webkit-box-pack: justify;-ms-flex-pack: justify;justify-content: space-between;}
+.flex-dc{-webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;}
+.content{width:687px;height: 252px;margin:50px auto;border:1px solid #ccc;}
+.list1{width: 150px;height: 250px;}
+.content li{-webkit-box-flex: 1;-ms-flex-positive: 1;flex-grow: 1;text-align: center;}
+.list1 li{background: #f1f1f1;border-bottom: 1px solid #ccc;display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-pack: center;-ms-flex-pack: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;align-items: center;}
+.list1 .active{background: #fff;}
+
+.out{width: 535px;height: 250px;position: relative;}
+.out div{position: absolute;top:0;left:0;width: 100%;height: 100%;display: none;}
+.out .active{display: block;}
+.out dl{height: 250px;}
+.out dl dd{position: absolute;top:0;left:0;width: 100%;height: 100%;z-index: 2;display: none;}
+.out dl .active{display: block;}
+.out dl dd img{width: 100%;height: 100%;}
+.out_list{position: absolute;left:0;bottom:0;width: 100%;z-index: 3;}
+.out_list li{background: rgba(0, 0, 0, .8);color: #fff;line-height: 30px;height: 30px;position: relative;margin-right: 1px;cursor:pointer;}
+.out_list li:last-child{margin-right: 0;}
+.out_list li.active{background: rgba(242, 22, 115,.8);}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script>
+        	window.onload=function(){
+
+        		var oUl=document.getElementById("list"),
+        			aLi=oUl.getElementsByTagName("li"),
+        			oP=document.getElementsByTagName("p")[0],  
+        			oNum=document.getElementById("num"),  //存储总数的节点
+        			oTotal=document.getElementById("total"),  //存储总价的节点
+        			oMax=document.getElementById("max"),  //存储最贵物品价格的节点
+        			aStrong=oUl.getElementsByTagName("strong"),
+        			aSpan=oUl.getElementsByTagName("span"),
+        			aEm=oUl.getElementsByTagName("em");
+
+        		for(var i=0;i<aLi.length;i++){
+        			fn1(i);
+        		}
+
+        		function accout(){
+        			var n=0;  //存储总数
+        			var t=0;  //存储总计
+        			var max=0;  //存储最贵
+        			for(var i=0;i<aSpan.length;i++){
+        				n+=parseInt(aStrong[i].innerHTML);
+        				t+=parseFloat(aSpan[i].innerHTML);
+        				if(aSpan[i].innerHTML!=0){
+        					if(parseFloat(aSpan[i].innerHTML)>max){
+        						max=parseFloat(aEm[i].innerHTML);
+        					}
+        				}
+        			}
+        			oNum.innerHTML=n;
+        			oTotal.innerHTML=t+'元';
+        			oMax.innerHTML=max;
+        		}
+
+        	
+        		function fn1(index){
+        			var	aBtn=aLi[index].getElementsByTagName("input"),
+	        			oStrong=aLi[index].getElementsByTagName("strong")[0],
+	        			oEm=aLi[index].getElementsByTagName("em")[0],
+	        			oSpan=aLi[index].getElementsByTagName("span")[0],
+	        			num=oStrong.innerHTML,
+	        			price=parseFloat(oEm.innerHTML);
+	        		aBtn[0].onclick=function(){
+        				num--;
+        				if(num<0){
+        					num=0;
+        				}
+        				oStrong.innerHTML=num;
+        				oSpan.innerHTML=num*price+'元';
+        				accout()
+        			};
+        			aBtn[1].onclick=function(){
+        				num++;
+        				oStrong.innerHTML=num;
+        				oSpan.innerHTML=num*price+'元';
+        				accout()
+        			}
+        		};
+        	}
+        </script>
+    </head>
+    <body>
+    <ul id="list">
+    	<li>
+    		<input type="button" value="-">
+    		<strong>0</strong>
+    		<input type="button" value="+">
+    		单价：<em>12.5元</em>
+    		小计：<span>0元</span>
+    	</li>
+    	<li>
+    		<input type="button" value="-">
+    		<strong>0</strong>
+    		<input type="button" value="+">
+    		单价：<em>14元</em>
+    		小计：<span>0元</span>
+    	</li>
+    	<li>
+    		<input type="button" value="-">
+    		<strong>0</strong>
+    		<input type="button" value="+">
+    		单价：<em>1.8元</em>
+    		小计：<span>0元</span>
+    	</li>
+    	<li>
+    		<input type="button" value="-">
+    		<strong>0</strong>
+    		<input type="button" value="+">
+    		单价：<em>129元</em>
+    		小计：<span>0元</span>
+    	</li>
+    	
+    </ul>
+    	<p>
+    		商品一共：<span id="num">0件</span><br>
+    		总计：<span id="total">0元</span><br>
+    		最贵的商品是：<span id="max">0元</span>
+    	</p>
+    </body>
+</html>

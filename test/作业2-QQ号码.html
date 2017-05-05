@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+window.onload=function(){
+
+	var aIpu=document.getElementsByTagName("input");
+	aIpu[1].onclick=function(){
+		//alert(" ");
+		var val=aIpu[0].value;
+		if(val==''||val==null){
+			alert("没有输入任何东西！")
+		}else if(typeof val !='number' && isNaN(val)){
+			alert("输入的不是数字");
+		}else if(val[0]==='0'){
+			alert("首位不能为0")
+		}else if(val.length<=5 || val.length>10){
+			alert("输入的数字必须在5位以上、10位以内");
+		}else{
+			alert("输入正确！");
+		}
+	}
+}
+</script>
+</head>
+<body>
+请输入QQ号码：<input type="text" />
+<input type="button" value="判断" />
+<br />
+1、有没有输入<br />
+2、输入的是不是数字<br />
+3、不能有0在前面<br />
+4、不能是小数<br />
+5、输入的数字必须在5位以上、10位以内<br />
+
+</body>
+</html>

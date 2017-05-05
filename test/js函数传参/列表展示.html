@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style>
+        	ul, li, div, p, h2{padding:0;margin:0;box-sizing: border-box;}
+        	li{list-style:none;}
+        	.content{width:400px;margin:50px auto;position: relative;background: #D8F1F9;padding:10px;}
+        	.t_list{overflow: auto;border-bottom: 1px solid #999;}
+        	.t_list li{width: 50px;float: left;line-height: 30px;line-height: 30px;text-align: center;}
+        	.t_list .active{background: #fff;}
+        	.show{position: relative;height: 500px;}
+        	.show ul{position: absolute;top:0;left:0;width: 100%;display: none; }
+        	.show li{position: relative;padding:10px 0 10px 30px ;border-bottom: 1px dashed #fff;}
+        	.show li span{position: absolute;top:13px;left:3px;background: #084683;color: #fff;border-radius: 5px;line-height: 20px;padding:0 3px;font-size: 12px;}
+        	.show li h2{font-size: 14px;line-height: 24px;}
+        	.show li div{overflow: hidden;display: none;}
+        	.show img{height: 72px;float: left;margin-right: 10px;}
+        	.show p{font-size: 12px;line-height: 18px;}
+        	.show ul.active{display: block;}
+        	.show li.active h2{display: none;}
+        	.show li.active div{display: block;}
+        </style>
+    </head>
+    <body>
+    	<div class="content" id="content">
+    		<ul class="t_list" id="t_list">
+    			<li class="active">每日</li>
+    			<li>每周</li>
+    			<li>全部</li>
+    		</ul>
+    		<div class="show" id="show">
+    			<ul class="active">
+    				<li>
+    					<span>00</span>
+    					<h2>习近平考察中国政法大学</h2>
+    					<div>
+    						<img src="img/1.jpg" alt="">
+    						<p>习近平考察中国政法大学</p>
+    					</div>
+    				</li>
+    				<li>
+    					<span>01</span>
+    					<h2>菲媒:菲民众最不信任中俄</h2>
+    					<div>
+    						<img src="img/2.jpg" alt="">
+    						<p>菲媒:菲民众最不信任中俄</p>
+    					</div>
+    				</li>
+    				<li>
+    					<span>02</span>
+    					<h2>男孩吃蚕豆导致多器官衰竭</h2>
+    					<div>
+    						<img src="img/1.jpg" alt="">
+    						<p>男孩吃蚕豆导致多器官衰竭</p>
+    					</div>
+    				</li>
+    				<li>
+    					<span>03</span>
+    					<h2>武汉6车追尾事故致7人被困</h2>
+    					<div>
+    						<img src="img/1.jpg" alt="">
+    						<p>武汉6车追尾事故致7人被困</p>
+    					</div>
+    				</li>
+    				<li>
+    					<span>04</span>
+    					<h2>帅哥美女闹市快闪庆"五四"</h2>
+    					<div>
+    						<img src="img/1.jpg" alt="">
+    						<p>帅哥美女闹市快闪庆"五四"</p>
+    					</div>
+    				</li>
+    				<li>
+    					<span>05</span>
+    					<h2>胖妹夺校花选美冠军太欢乐</h2>
+    					<div>
+    						<img src="img/1.jpg" alt="">
+    						<p>胖妹夺校花选美冠军太欢乐</p>
+    					</div>
+    				</li>
+    				<li>
+    					<span>06</span>
+    					<h2>印度尼西亚146岁老人去世</h2>
+    					<div>
+    						<img src="img/1.jpg" alt="">
+    						<p>印度尼西亚146岁老人去世</p>
+    					</div>
+    				</li>
+    				<li>
+    					<span>07</span>
+    					<h2>习近平考察中国政法大学</h2>
+    					<div>
+    						<img src="img/1.jpg" alt="">
+    						<p>习近平考察中国政法大学</p>
+    					</div>
+    				</li>
+    				<li>
+    					<span>08</span>
+    					<h2>菲媒:菲民众最不信任中俄</h2>
+    					<div>
+    						<img src="img/2.jpg" alt="">
+    						<p>菲媒:菲民众最不信任中俄</p>
+    					</div>
+    				</li>
+    				<li>
+    					<span>09</span>
+    					<h2>男孩吃蚕豆导致多器官衰竭</h2>
+    					<div>
+    						<img src="img/1.jpg" alt="">
+    						<p>男孩吃蚕豆导致多器官衰竭</p>
+    					</div>
+    				</li>
+    			</ul>
+    			<ul>
+    				<li>
+    					<span>10</span>
+    					<h2>习近平考察中国政法大学</h2>
+    					<div>
+    						<img src="img/1.jpg" alt="">
+    						<p>习近平考察中国政法大学</p>
+    					</div>
+    				</li>
+    				<li>
+    					<span>11</span>
+    					<h2>菲媒:菲民众最不信任中俄</h2>
+    					<div>
+    						<img src="img/2.jpg" alt="">
+    						<p>菲媒:菲民众最不信任中俄</p>
+    					</div>
+    				</li>
+    				<li>
+    					<span>12</span>
+    					<h2>男孩吃蚕豆导致多器官衰竭</h2>
+    					<div>
+    						<img src="img/1.jpg" alt="">
+    						<p>男孩吃蚕豆导致多器官衰竭</p>
+    					</div>
+    				</li>
+    				<li>
+    					<span>13</span>
+    					<h2>武汉6车追尾事故致7人被困</h2>
+    					<div>
+    						<img src="img/1.jpg" alt="">
+    						<p>武汉6车追尾事故致7人被困</p>
+    					</div>
+    				</li>
+    				<li>
+    					<span>14</span>
+    					<h2>帅哥美女闹市快闪庆"五四"</h2>
+    					<div>
+    						<img src="img/1.jpg" alt="">
+    						<p>帅哥美女闹市快闪庆"五四"</p>
+    					</div>
+    				</li>
+    				<li>
+    					<span>15</span>
+    					<h2>胖妹夺校花选美冠军太欢乐</h2>
+    					<div>
+    						<img src="img/1.jpg" alt="">
+    						<p>胖妹夺校花选美冠军太欢乐</p>
+    					</div>
+    				</li>
+    				<li>
+    					<span>16</span>
+    					<h2>印度尼西亚146岁老人去世</h2>
+    					<div>
+    						<img src="img/1.jpg" alt="">
+    						<p>印度尼西亚146岁老人去世</p>
+    					</div>
+    				</li>
+    				<li>
+    					<span>17</span>
+    					<h2>习近平考察中国政法大学</h2>
+    					<div>
+    						<img src="img/1.jpg" alt="">
+    						<p>习近平考察中国政法大学</p>
+    					</div>
+    				</li>
+    				<li>
+    					<span>18</span>
+    					<h2>菲媒:菲民众最不信任中俄</h2>
+    					<div>
+    						<img src="img/2.jpg" alt="">
+    						<p>菲媒:菲民众最不信任中俄</p>
+    					</div>
+    				</li>
+    				<li>
+    					<span>19</span>
+    					<h2>男孩吃蚕豆导致多器官衰竭</h2>
+    					<div>
+    						<img src="img/1.jpg" alt="">
+    						<p>男孩吃蚕豆导致多器官衰竭</p>
+    					</div>
+    				</li>
+    			</ul>
+    			<ul>
+    				<li>
+    					<span>20</span>
+    					<h2>习近平考察中国政法大学</h2>
+    					<div>
+    						<img src="img/1.jpg" alt="">
+    						<p>习近平考察中国政法大学</p>
+    					</div>
+    				</li>
+    				<li>
+    					<span>21</span>
+    					<h2>菲媒:菲民众最不信任中俄</h2>
+    					<div>
+    						<img src="img/2.jpg" alt="">
+    						<p>菲媒:菲民众最不信任中俄</p>
+    					</div>
+    				</li>
+    				<li>
+    					<span>22</span>
+    					<h2>男孩吃蚕豆导致多器官衰竭</h2>
+    					<div>
+    						<img src="img/1.jpg" alt="">
+    						<p>男孩吃蚕豆导致多器官衰竭</p>
+    					</div>
+    				</li>
+    				<li>
+    					<span>23</span>
+    					<h2>武汉6车追尾事故致7人被困</h2>
+    					<div>
+    						<img src="img/1.jpg" alt="">
+    						<p>武汉6车追尾事故致7人被困</p>
+    					</div>
+    				</li>
+    				<li>
+    					<span>24</span>
+    					<h2>帅哥美女闹市快闪庆"五四"</h2>
+    					<div>
+    						<img src="img/1.jpg" alt="">
+    						<p>帅哥美女闹市快闪庆"五四"</p>
+    					</div>
+    				</li>
+    				<li>
+    					<span>25</span>
+    					<h2>胖妹夺校花选美冠军太欢乐</h2>
+    					<div>
+    						<img src="img/1.jpg" alt="">
+    						<p>胖妹夺校花选美冠军太欢乐</p>
+    					</div>
+    				</li>
+    				<li>
+    					<span>26</span>
+    					<h2>印度尼西亚146岁老人去世</h2>
+    					<div>
+    						<img src="img/1.jpg" alt="">
+    						<p>印度尼西亚146岁老人去世</p>
+    					</div>
+    				</li>
+    				<li>
+    					<span>27</span>
+    					<h2>习近平考察中国政法大学</h2>
+    					<div>
+    						<img src="img/1.jpg" alt="">
+    						<p>习近平考察中国政法大学</p>
+    					</div>
+    				</li>
+    				<li>
+    					<span>28</span>
+    					<h2>菲媒:菲民众最不信任中俄</h2>
+    					<div>
+    						<img src="img/2.jpg" alt="">
+    						<p>菲媒:菲民众最不信任中俄</p>
+    					</div>
+    				</li>
+    				<li>
+    					<span>29</span>
+    					<h2>男孩吃蚕豆导致多器官衰竭</h2>
+    					<div>
+    						<img src="img/1.jpg" alt="">
+    						<p>男孩吃蚕豆导致多器官衰竭</p>
+    					</div>
+    				</li>
+    			</ul>
+    		</div>
+    	</div>
+    	<script>
+    		/*
+				重用代码：
+					1、尽量保证 HTML 代码结构一致，可以通过父级选取子元素
+					2、把核心主程序实现，用函数包起来
+					3、把每组里不同的值找出来，通过传参实现
+			*/
+    		window.onload=function(){
+    			var oList=document.getElementById("t_list"),
+    				aLi=oList.getElementsByTagName("li"),
+    				oShow=document.getElementById("show"),
+    				aUl=oShow.getElementsByTagName("ul"),
+    				aLis=oShow.getElementsByTagName("li");
+
+    				tab(aLi,aUl)
+    				tab(aLis,aLis);
+
+    				function tab(obj,obj2){
+    					for(var i=0;i<obj.length;i++){
+    						obj[i].index=i;
+    						obj[i].onmouseover=function(){
+    							for(var i=0;i<obj.length;i++){
+    								obj[i].className='';
+    								obj2[i].className='';
+    							}
+    							this.className="active";
+    							obj2[this.index].className="active";
+    						}
+    					}
+    				}
+    		}
+    	</script>
+    </body>
+</html>
