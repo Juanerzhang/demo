@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <style>
+    	div, p{margin:0;padding:0;}
+    	.content{width:300px;margin:50px auto;}
+    	.content p{line-height: 30px;}
+    	.content span{display: inline-block;padding-right: 5px;float: left;}
+    	.content img{height:24px;line-height: 30px;display: inline-block;margin:3px 1px;float: left;}
+    </style>
+    <script>
+    	window.onload=function(){
+    		var oP=document.getElementById("op"),
+    			aImg=oP.getElementsByTagName("img");
+    			
+    		var arrText=['很差','较差','还行','较好','很好'];
+    		var str=['img/start1.png','img/start1.png','img/start1.png','img/start1.png','img/start1.png'];
+    		var html=''; // 存储img的innerHTML
+    		var text='';  //存储em的innerHTML
+    		for(var i=0;i<arrText.length;i++){  //注入img列表
+    			html+='<img src="'+str[i]+'">';
+    		}
+    		oP.innerHTML+=html;//注入img列表
+    		for(var i=0;i<arrText.length;i++){
+    			var oEm=oP.getElementsByTagName("em")[0];
+    			aImg[i].index=i;
+    			//鼠标移入
+    			aImg[i].onmouseover=function(){
+    				fen(this.index)
+    			};
+    			//鼠标点击
+    			aImg[i].onclick=function(){
+    				fen(this.index)
+    				for(i=0;i<(this.index+1);i++){
+    					str[i]=aImg[i].src;
+    					text=arrText[this.index];
+    				}
+    				for(var k=this.index+1;k<arrText.length;k++){
+    					str[k]='img/start1.png';
+    				}
+    				text=arrText[this.index]
+    			}
+    			//鼠标移开
+    			aImg[i].onmouseout=function(){
+    				for(i=0;i<arrText.length;i++){
+    					aImg[i].src=str[i];
+    					oEm.innerHTML=text;
+    				}
+    			}
+    		}
+    		function fen(index){
+    			for(var j=0;j<arrText.length;j++){
+    				aImg[j].src='img/start1.png';
+   				}
+				for(var i=0;i<(index+1);i++){
+					aImg[i].src=index>1?'img/start3.png':'img/start2.png';
+				}
+				oEm.innerHTML=arrText[index];
+    		}
+    	}
+    </script>
+    <body>
+    <div class="content">
+    	<p id="op">
+    		<span>总体评分：</span>
+    		<em></em>
+    	</p>
+    </div>
+    </body>
+</html>

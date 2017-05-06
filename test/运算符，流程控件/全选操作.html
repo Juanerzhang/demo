@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style>
+        	div, ul, li{margin:0;padding:0;box-sizing:border-box;}
+        	li{list-style: none;}
+        	.content{width: 400px;margin:40px auto;}
+        	.content li{padding:5px 0;}
+        	.content li span{display: inline-block;width: 200px;margin-left:10px;font-size: 14px;color: #666;}
+        	.content em{font-style: normal;font-size: 14px;}
+        	.content input{width: 20px;}
+			.bottom{border-top:1px solid #666;padding:10px 0;}
+        	.bottom a{display: inline-block;padding:0 10px;border-radius: 3px;border:1px solid #eee;text-decoration: none;color: #ccc;}
+        </style>
+    </head>
+    <body>
+    <div class="content" id="content">
+    	<ul id="list">
+    		<li>
+    			<input type="checkbox" >
+    			<span>长相依</span>
+    			<em>卓依婷</em>
+    		</li>
+    		<li>
+    			<input type="checkbox" >
+    			<span>悲伤逆流成河</span>
+    			<em>金南岭</em>
+    		</li>
+    		<li>
+    			<input type="checkbox" >
+    			<span>一人饮酒醉</span>
+    			<em>MC天佑</em>
+    		</li>
+    		<li>
+    			<input type="checkbox" >
+    			<span>入戏太深</span>
+    			<em>马旭东</em>
+    		</li>
+    		<li>
+    			<input type="checkbox" >
+    			<span>水手</span>
+    			<em>郑智化</em>
+    		</li>
+    		<li>
+    			<input type="checkbox" >
+    			<span>有点甜</span>
+    			<em>汪苏泷&BY2</em>
+    		</li>
+    		<li>
+    			<input type="checkbox" >
+    			<span>小酒窝</span>
+    			<em>林俊杰&蔡卓妍</em>
+    		</li>
+    		<li>
+    			<input type="checkbox" >
+    			<span>咱们结婚吧</span>
+    			<em>齐晨</em>
+    		</li>
+    	</ul>
+    	<div class="bottom">
+    		<input id="all" type="checkbox" >全选
+    		<a id="collect" href="javascript:;">收藏</a>
+    		<a id="add" href="javascript:;">+添加</a>
+    		<a id="remove" href="javascript:;">-删除</a>
+    	</div>
+    </div>
+    <script>
+    	window.onload=function(){
+    		var oUl=document.getElementById("list"),
+    			aInput=oUl.getElementsByTagName("input"),
+    			oInput=document.getElementById("all");
+
+    			var num=0;
+    			for(var i=0;i<aInput.length;i++){
+    				aInput[i].onclick=function(){
+    					if(this.checked){
+    						num++
+    					}else{
+    						num--
+    					}
+    					if(num==aInput.length){
+    						oInput.checked=true;
+    					}else{
+    						oInput.checked=false;
+    					}
+    				}
+    			}
+    			oInput.onclick=function(){
+    				for(var i=0;i<aInput.length;i++){
+    					if(oInput.checked){
+    						aInput[i].checked=true;
+    						num=aInput.length;
+    					}else{
+    						aInput[i].checked=false;
+    						num=0;
+    					}
+    				}
+    			}
+    	}
+    </script>
+    </body>
+</html>
