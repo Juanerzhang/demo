@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>书架</title>
+        <style>
+        	div, ul, li{margin:0;padding:0;box-sizing: border-box;}
+        	li{list-style:none;}
+        	.app{width:900px;margin:50px;}
+        	.list{border:1px solid #999;}
+        	.list li{display: flex;justify-content: space-between;}
+        	.list li span{border-bottom:1px solid #999;border-right: 1px solid #999;text-align: center;flex-grow: 1;display: block;padding:10px 0;width: 150px;}
+        	.list li .name{width: 250px;}
+        	.list li:last-child span{border-bottom:none;}
+        	.list li span:last-child{border-right:none;}
+        	.list .text{width: 20px;text-align: center;}
+        </style>
+    </head>
+    <body>
+    	<div id="app" class="app">
+    		<ul class="list">
+    			<li>
+    				<span class="name">书名</span>
+    				<span class="author">作者</span>
+    				<span class="price">价格(元)</span>
+    				<span class="acount">数量(本)</span>
+    				<span class="subtotal">小计(元)</span>
+    				<span class="todo">操作</span>
+    			</li>
+    			<li v-for="(item,index) in lists">
+    				<span class="name">{{item.name}}</span>
+    				<span class="author">{{item.author}}</span>
+    				<span class="price">{{item.price}}</span>
+    				<span class="acount"><input type="button" value="-" @click="min(index)"><input class="text" type="text" v-model="item.acount"></strong><input type="button" value="+" @click="add(index)"></span>
+    				<span class="subtotal">{{parseFloat(item.price)*parseFloat(item.acount)}}</span>
+    				<span class="todo" v-on:click="remove"><input type="button" value="删除"></span>
+    			</li>
+    		</ul>
+    		<ul class="addList">
+    			<li>书名：<input type="text" v-model="newList.name"></li>
+    			<li>作者：<input type="text" v-model="newList.author"></li>
+    			<li>价格：<input type="text" v-model="newList.price"></li>
+    			<li>数量：<input type="text" v-model="newList.acount"></li>
+    			<li><input @click="addnewList" type="button" value="新增" ></li>
+    		</ul>
+    	</div>
+    	<script src="vue.js"></script>
+    	<script>
+    		var app = new Vue({
+    			el:'#app',
+    			data: {
+    				newList:{
+    					'name':'',
+	    				'author':'',
+	    				'price':'',
+	    				'acount':''
+    				},
+	    			lists: [
+	    				{
+	    					'name':'《红楼梦》',
+		    				'author':'曹雪芹',
+		    				'price':40,
+		    				'acount':0
+	    				}
+	    			]
+    			},
+    			methods:{
+    				min:function(index){
+    					var item=this.lists[index];
+    					if(item.acount==0){item.acount=0}else{item.acount--}
+    				},
+    				add:function(index){
+    					var item=this.lists[index];
+    					item.acount++;
+    				},
+    				remove:function(index){
+    					this.lists.splice(index,1);
+    				},
+    				addnewList:function(){
+    					//console.log("点击");
+    					this.lists.push(this.newList);
+    					this.newList={
+    						'name':'',
+		    				'author':'',
+		    				'price':'',
+		    				'acount':''
+    					}
+    				}
+    			}
+    		})
+    		
+    	</script>
+    </body>
+</html>
