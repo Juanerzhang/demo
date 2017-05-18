@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>抖动</title>
+        <style>
+        	img{position: absolute;top:200px;width:120px;height: 100px;}
+        </style>
+        <script src="base.js"></script>
+        <script>
+        	$(function(){
+        		var arrUrl=['img/j1.jpg','img/j2.jpg','img/j3.jpg','img/j4.jpg','img/j5.jpg','img/j6.jpg','img/j7.jpg','img/j8.jpg'];
+        		var html='';
+
+        		for(var i=0;i<arrUrl.length;i++){
+        			html+='<img src="'+arrUrl[i]+'" alt="">'
+
+        		}
+        		document.body.innerHTML=html;
+
+        		var aImg=document.getElementsByTagName("img");
+        		for(var i=0;i<arrUrl.length;i++){
+        			aImg[i].style.left=80+130*i+'px';
+        			aImg[i].onmouseover=function(){
+        				var _this=this;
+	        			shake(_this,'top',20);
+	        		}
+        		}
+        		function shake(obj,attr,speed,endFn){
+        			var arr=[];   //存储抖动频率；
+        			speed=parseInt(speed)
+		        	for(var i=speed;i>0;i-=2){
+		        		arr.push(i,-i);
+		        	}
+	        		arr.push(0);
+	        		var num=0;
+        			if(obj.onOff){return}
+    				obj.onOff=true;
+    				clearInterval(obj.shakeTimer);
+    				obj.shakeTimer=setInterval(function(){
+        				var pos=parseInt(getStyle(obj,attr))+arr[num];
+        				obj.style[attr]=pos+'px';
+        				num++
+        				if(num===arr.length){
+        					clearInterval(obj.shakeTimer);
+        					endFn && endFn();
+        					obj.onOff=false;
+        				}
+        			},50)
+        		}
+        	})
+//         	首先没有定义obj.onOff，值为false所以不执行｛｝里面的return,所以往下执行。
+// 第二句就是给obj.onOff给值了，true,
+// 然后就开始一直往下执行，
+// 直到if(num==arr.length) 的时候，obj.onOff又是false了，就回到第一步了，
+
+// 中间的时候，就假如你执行到for那一行的时候，你鼠标又经过了一下，然后就要重新从if(obj.onoff){}这个地方开始，但因为此时经过了第二步，obj,onOff是true,所以执行return,所以这个假如就是不好用的，
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

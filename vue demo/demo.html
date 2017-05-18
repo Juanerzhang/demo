@@ -28,10 +28,10 @@
     				<span class="todo">操作</span>
     			</li>
     			<li v-for="(item,index) in lists">
-    				<span class="name">{{item.name}}</span>
+    				<span class="name">《{{item.name}}》</span>
     				<span class="author">{{item.author}}</span>
     				<span class="price">{{item.price}}</span>
-    				<span class="acount"><input type="button" value="-" @click="min(index)"><input class="text" type="text" v-model="item.acount"></strong><input type="button" value="+" @click="add(index)"></span>
+    				<span class="acount"><input type="button" value="-" @click="min(index)"><input class="text" type="text" v-model="item.acount"><input type="button" value="+" @click="add(index)"></span>
     				<span class="subtotal">{{parseFloat(item.price)*parseFloat(item.acount)}}</span>
     				<span class="todo" v-on:click="remove"><input type="button" value="删除"></span>
     			</li>
@@ -39,8 +39,8 @@
     		<ul class="addList">
     			<li>书名：<input type="text" v-model="newList.name"></li>
     			<li>作者：<input type="text" v-model="newList.author"></li>
-    			<li>价格：<input type="text" v-model="newList.price"></li>
-    			<li>数量：<input type="text" v-model="newList.acount"></li>
+    			<li>价格：<input type="text" v-model="newList.price" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();" ></li>
+    			<li>数量：<input type="text" v-model="newList.acount" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();" ></li>
     			<li><input @click="addnewList" type="button" value="新增" ></li>
     		</ul>
     	</div>
@@ -57,7 +57,7 @@
     				},
 	    			lists: [
 	    				{
-	    					'name':'《红楼梦》',
+	    					'name':'红楼梦',
 		    				'author':'曹雪芹',
 		    				'price':40,
 		    				'acount':0
@@ -78,17 +78,24 @@
     				},
     				addnewList:function(){
     					//console.log("点击");
-    					this.lists.push(this.newList);
-    					this.newList={
-    						'name':'',
-		    				'author':'',
-		    				'price':'',
-		    				'acount':''
-    					}
+                        for(var i in this.newList){
+                            if(this.newList[i]==''||this.newList[i]==null){
+                                return false;
+                            }else{
+                                this.lists.push(this.newList);
+                                this.newList={
+                                    'name':'',
+                                    'author':'',
+                                    'price':'',
+                                    'acount':''
+                                }
+                            }
+                        }
+    					
     				}
     			}
     		})
-    		
+           
     	</script>
     </body>
 </html>

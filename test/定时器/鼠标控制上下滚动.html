@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="http://at.alicdn.com/t/font_vnx62dz4h146lxr.css">
+        <style>
+        	div, h2, ul, li{margin:0;padding:0;box-sizing:border-box;}
+        	li{list-style:none;}
+        	a{text-decoration: none;}
+        	.content{width: 320px;margin:20px auto;background: #f2f2f2;border-radius: 10px;overflow: hidden;}
+        	.content h2{background:#085E9B;padding:5px 20px;font-size: 16px;color:#fff;}
+        	.show{overflow: hidden;height: 600px;background: #fff;border:1px solid #eee;position: relative;}
+        	.show a{position: absolute;left:0;width:100%;padding:5px 0;text-align: center;background:#eee;}
+        	.show .up{top:0;}
+        	.show .down{bottom:0;}
+        	.show a .iconfont{color: #999;font-size: 20px;}
+        	.show a:hover{background: #DEF7F9;}
+        	.list{padding:40px 0;}
+        	.list li{overflow: hidden;}
+        	.list img{height: 60px;width:128px;float: left;margin-right: 10px;}
+        	.list p{font-size: 14px;color: #666;}
+        </style>
+        <script src="base.js"></script>
+        <script>
+        	$(function(){
+        		var arrUrl=['img/j1.jpg','img/j2.jpg','img/j3.jpg','img/j4.jpg','img/j5.jpg','img/j6.jpg','img/j7.jpg','img/j8.jpg','img/j9.jpg','img/j10.jpg'];
+        		var arrText=['文字说明文字说明文字说明文字说明1','文字说明文字说明文字说明文字说明2','文字说明文字说明文字说明文字说明3','文字说明文字说明文字说明文字说明4','文字说明文字说明文字说明文字说明5','文字说明文字说明文字说明文字说明6','文字说明文字说明文字说明文字说明7','文字说明文字说明文字说明文字说明8','文字说明文字说明文字说明文字说明9','文字说明文字说明文字说明文字说明10'];
+        		var html='';
+        		for(var i=0;i<20;i++){
+        			html+='<li><img src="'+arrUrl[parseInt(i%10)]+'" alt="" /><p>'+arrText[parseInt(i%10)]+'</p></li>'
+        		}
+        		$("list").innerHTML=html;
+        		var H=$("list").offsetHeight;
+        		var mT=null;  //存储list的margin-top;
+        		var timer=null;
+        		$("up").onmousedown=function(){
+        			timer=setInterval(function(){
+        				if(mT<H-600){
+        					mT++
+        				}
+        				$("list").style.marginTop=-mT+'px';
+        			},20)
+        		}
+				$("up").onmouseup=function(){
+					clearInterval(timer);
+				}
+        		$("down").onmousedown=function(){
+        			timer=setInterval(function(){
+        				if(mT>0){
+        					mT--
+        				}
+        				$("list").style.marginTop=-mT+'px';
+        			},20)
+        		}
+        		$("down").onmouseup=function(){
+        			clearInterval(timer);
+        		}
+        	})
+        </script>
+    </head>
+    <body>
+    <div class="content" id="content">
+    	<h2>标题</h2>
+    	<div class="show" id="show">
+    		<a class="up" id="up" href="javascript:;"><i class="iconfont icon-shang"></i></a>
+    		<a class="down" id="down" href="javascript:;"><i class="iconfont icon-shang"></i></a>
+    		<ul class="list" id="list"></ul>
+    	</div>
+    </div>
+    </body>
+</html>

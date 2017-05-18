@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>淘宝商品广告效果图</title>
+        <style>
+        	div, ul, li{margin:0;padding:0;box-sizing:border-box;}
+        	li{list-style: none;}
+        	.content{width: 660px;margin:50px auto;}
+        	.list{position: relative;}
+        	.list li{border:1px solid pink;background: -weikit-linear-gradient(white,pink);background: -o-linear-gradient(white,pink);background: -moz-linear-gradient(white,pink);background: linear-gradient(white,pink);line-height:29px;margin:2px;text-align: center;width: 70px;position: absolute;left:0;}
+        	.list li.active{background:-webkit-linear-gradient(pink,#F633B5);background: -o-linear-gradient(pink,#F633B5);background: -moz-linear-gradient(pink,#F633B5);background: linear-gradient(pink,#F633B5);}
+        	.show{width: 500px;margin:0 auto;position: relative;}
+        	.show img{width: 500px;position: absolute;top:0;left:0;display: none;}
+        	.show img.active{display: block;}
+        </style>
+        <script src="base.js"></script>
+        <script>
+        	$(function(){
+        		var aLi=$("list").getElementsByTagName("li");
+        		var aImg=$("show").getElementsByTagName("img");
+        		var arrTop=[];
+        		var num=0,
+        			num2=0;
+        		var timer=null;
+        		for(var i=0;i<aLi.length;i++){
+        			arrTop[i] = (i%7)*33;
+        			aLi[i].style.top=arrTop[i]+'px';
+        			if(i>6){
+        				aLi[i].style.right=0;
+        				aLi[i].style.left='auto';
+        			}
+        			aLi[i].index=i;
+        			aLi[i].onmouseover=function(){
+        				num=this.index;
+        				tab();
+        				clearInterval(timer);
+        			}
+        			aLi[i].onmouseout=autoPlay;
+        		}
+        		tab();
+        		clearInterval(timer);
+        		function autoPlay(){
+	        		timer=setInterval(function(){
+	        			num2++
+	        			num2%=(aLi.length-1)*2;
+	        			num=num2;
+	        			if(num2>aLi.length-1){
+	        				num=aLi.length*2-1-num2;
+	        			}
+	        			console.log(num);
+	        			tab();
+	        		},1000)
+        		}
+        		function tab(){
+        			for(var i=0;i<aLi.length;i++){
+    					aLi[i].className='';
+    					aImg[i].className='';
+        			}
+        			aLi[num].className='active';
+        			aImg[num].className="active";
+        		}
+        	})
+        </script>
+    </head>
+    <body>
+    <div class="content">
+    	<ul class="list" id="list">
+    		<li>连衣裙</li>
+    		<li>雪纺</li>
+    		<li>T袖</li>
+    		<li>铅笔裤</li>
+    		<li>婚纱</li>
+    		<li>外套</li>
+    		<li>连体裤</li>
+    		<li class="li_r">包包</li>
+    		<li class="li_r">凉鞋</li>
+    		<li class="li_r">单鞋</li>
+    		<li class="li_r">太阳镜</li>
+    		<li class="li_r">丝袜</li>
+    		<li class="li_r">帆布鞋</li>
+    		<li class="li_r">情侣装</li>
+    	</ul>
+    	<div class="show" id="show">
+    		<img src="img/j1.jpg" alt="">
+    		<img src="img/j2.jpg" alt="">
+    		<img src="img/j3.jpg" alt="">
+    		<img src="img/j5.jpg" alt="">
+    		<img src="img/j6.jpg" alt="">
+    		<img src="img/j7.jpg" alt="">
+    		<img src="img/j8.jpg" alt="">
+    		<img src="img/j9.jpg" alt="">
+    		<img src="img/j10.jpg" alt="">
+    		<img src="img/j11.jpg" alt="">
+    		<img src="img/j12.jpg" alt="">
+    		<img src="img/j13.jpg" alt="">
+    		<img src="img/j14.jpg" alt="">
+    		<img src="img/j15.jpg" alt="">
+    	</div>
+    </div>
+    </body>
+</html>

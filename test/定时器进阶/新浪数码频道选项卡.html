@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>新浪数码频道选项卡</title>
+        <style>
+        	div, ul, ol, li, p, h2{margin:0;padding:0;box-sizing:border-box;}
+        	li{list-style:none;}
+        	a{text-decoration: none;}
+        	.clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; font-size: 0; }
+        	.clearfix { *zoom: 1; }
+        	.content{width:800px;margin:100px auto;border:1px solid #0A677A;}
+        	.show{position: relative;}
+        	.list{padding-left:150px;border-bottom:1px solid #0A677A;background: -webkit-linear-gradient(#fff,#D3EEFB);background: -o-linear-gradient(#fff,#D3EEFB);background: -moz-linear-gradient(#fff,#D3EEFB);background: linear-gradient(#fff,#D3EEFB);padding-top:15px;}
+        	.list li{width: 120px;position: relative;border:1px solid #0A677A;border-bottom:none;height: 40px;float: left;}
+        	.list li a{line-height: 40px;text-align:center;color:#0A677A;position: absolute;bottom:0;width: 100%;}
+        	.list .active a{background: #fff;height: 40px;bottom:-1px;display: block;}
+        	.show h2{position: absolute;left:0;top:15px;width:150px;font-size: 20px;line-height: 2;text-shadow:0 0 6px #032E5C;color:#fff;-webkit-text-stroke-width:1px;-webkit-text-stroke-color:#032E5C;text-align:center;}
+        	.outer{position: relative;}
+        	.outer > div{display: none;padding:10px;overflow: hidden;}
+        	.outer div.active{display: block;}
+        	.outer .l_pic{float: left;padding-right: 20px;}
+        	.outer .l_pic img{width:200px;}
+        	.outer .r_pic{width: 555px;height:150px;overflow: hidden;position: relative;float: left;}
+        	.outer ul{position:absolute;top:0;left:0;height: 120px;}
+        	.outer ul li{height: 120px;width:175px;margin-right: 10px;float: left;}
+        	.outer li img{width: 175px;}
+        	.outer .page{margin-top:120px;text-align: center;}
+        	.page ol{display: inline-block;padding:0 10px;}
+        	.page li{display: inline-block;margin:0 2px;width: 10px;height: 10px;border-radius: 50%;background: #ccc;}
+        	.page .active{background: #f66;}
+        	.page a{display: inline-block;line-height: 16px;padding:0 3px;border:1px solid #032E5C;color: #999;}
+        </style>
+    </head>
+    <body>
+    <div class="content">
+    	<div class="show" id="show">
+    		<h2>新鲜数码</h2>
+    		<ul class="list clearfix">
+    			<li class="active"><a href="javascript:;">新品</a></li>
+    			<li><a href="javascript:;">数码</a></li>
+    		</ul>
+    		<div class="outer" id="outer">
+    			<div class="active">
+    				<div class="l_pic"><img src="img/j4.jpg" alt=""><p>新品左边图片</p></div>
+    				<div class="r_pic">
+    					<ul>
+    						<li>
+    							<img src="img/j1.jpg" alt="">
+    							<p>新品一</p>
+    						</li>
+    						<li>
+    							<img src="img/j1.jpg" alt="">
+    							<p>新品一</p>
+    						</li>
+    						<li>
+    							<img src="img/j1.jpg" alt="">
+    							<p>新品一</p>
+    						</li>
+    					</ul>
+	    				<div class="page">
+	    					<a href="javascript:;"><</a>
+	    					<ol><li class="active"></li><li></li></ol>
+	    					<a href="javascript:;">></a>
+	    				</div>
+    				</div>
+    			</div>
+    			<div>
+    				<div class="l_pic"></div>
+    				<ul>
+    					<li><img src="img/j2.jpg" alt=""></li>
+    				</ul>
+    				<div class="page">
+    					<a href="javascript:;"><</a>
+    					<ol></ol>
+    					<a href="javascript:;">></a>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+    </body>
+    <script src="base.js"></script>
+    <script>
+    	$(function(){
+    		var arrImg=[
+    				['img/j1.jpg','img/j2.jpg','img/j3.jpg','img/j5.jpg','img/j6.jpg','img/j7.jpg','img/j8.jpg','img/j9.jpg','img/j10.jpg','img/j11.jpg','img/j12.jpg'],
+    				['img/j9.jpg','img/j10.jpg','img/j11.jpg','img/j12.jpg','img/j13.jpg']
+    				],
+    			arrText=[
+    				['新品图片一','新品图片二','新品图片三','新品图片四','新品图片五','新品图片六','新品图片七','新品图片八','新品图片九','新品图片十','新品图片十一','新品图片十二'],
+    				['极客图片一','极客图片二','极客图片三','极客图片四','极客图片五']
+    				];
+    		
+    	})
+    </script>
+</html>

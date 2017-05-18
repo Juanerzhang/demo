@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style>
+        	div, ul, li{margin:0;padding:0;box-sizing:border-box;}
+        	a{text-decoration: none;}
+        	li{list-style:none;}
+        	.content{width: 600px;margin:50px auto;position: relative;}
+        	.nav{background: -webkit-linear-gradient(#74CAF9,#055695);
+				  background: -o-linear-gradient(#74CAF9,#055695); /* Opera 11.1 - 12.0 */
+				  background: -moz-linear-gradient(#74CAF9,#055695); /* Firefox 3.6 - 15 */
+				  background: linear-gradient(#74CAF9,#055695); /* 标准的语法 */overflow: hidden;padding:0 20px;}
+        	.nav li{float: left;margin:0 5px;padding:5px 0;position:relative;}
+        	.nav li:before{position: absolute;top:8px;right:-5px;content: "";background: #ccc;width: 1px;height: 20px;}
+        	.nav li a{display: inline-block;padding:0 20px;line-height: 26px;color:#fff;}
+        	.nav li a:hover, .nav li .active{background: rgba(255, 255, 255,.3);border-radius: 10px;}
+        	.sub_menu{}
+        	.sub_menu div{padding:5px 20px;border:1px solid #ccc;position: absolute;top:50px;border-radius: 10px;background:-webkit-linear-gradient(#F4FBFC,#9AC8F5,#F4FBFC);background:-o-linear-gradient(#F4FBFC,#9AC8F5);background:-moz-linear-gradient(#F4FBFC,#9AC8F5);background:linear-gradient(#F4FBFC,#9AC8F5);display: none; }
+        	.sub_menu div:after{position: absolute;top:-6px;width: 10px;height: 10px;content: "";border:1px solid #ccc;border-right:none;border-bottom:none;transform:rotate(45deg);background: #edf7fc;}
+        	.sub_menu div:nth-of-type(1):after{left:55px;}
+        	.sub_menu div:nth-of-type(2){left:80px;}
+        	.sub_menu div:nth-of-type(2):after{left:72px;}
+        	.sub_menu div:nth-of-type(3){left:200px;}
+        	.sub_menu div:nth-of-type(3):after{left:55px;}
+        	.sub_menu div:nth-of-type(4){left:280px;}
+        	.sub_menu div:nth-of-type(4):after{left:50px;}
+        	.sub_menu .active{display: block;}
+        	.sub_menu a{color: #055695;display: inline-block;line-height: 24px;padding:0 10px;position: relative;font-size: 14px;}
+        	.sub_menu a:before{position: absolute;top:0;right: 0;width:1px height:14px;content: "|";color:#055695;}
+        	.sub_menu a:hover{color: #600;}
+        </style>
+        <script src="base.js"></script>
+        <script>
+        	$(function(){
+        		var aLi=$("nav").getElementsByTagName("li"),
+        			aDiv=$("sub_menu").getElementsByTagName("div");
+        		var timer=null;
+        		for(var i=0;i<aLi.length;i++){
+        			aLi[i].index=i;
+        			aDiv[i].index=i;
+        			aLi[i].onmouseover=function(){
+        				for(var i=0;i<aLi.length;i++){
+        					aLi[i].className='';
+        					aDiv[i].className='';
+        				}
+	    				tabOver(this);
+        			};
+        			aLi[i].onmouseout=function(){
+        				tabOut(this);
+        			}
+        			aDiv[i].onmouseover=function(){
+        				tabOver(this)
+        			}
+        			aDiv[i].onmouseout=function(){
+        				tabOut(this);
+        			}
+        		}
+        		//移开
+        		function tabOut(val){
+        			var that=val;
+    				timer=setInterval(function(){
+    					aLi[val.index].className='';
+    					aDiv[val.index].className='';
+    				},1000)
+    			}
+    			//移入
+    			function tabOver(val){
+    				clearInterval(timer);
+    				aLi[val.index].className='active';
+    				aDiv[val.index].className="active";
+    			}
+        	})
+        </script>
+    </head>
+    <body>
+    	<div class="content">
+	    	<ul class="nav" id="nav">
+	    		<li><a href="javascript:;">首页</a></li>
+	    		<li><a href="javascript:;">关于我们</a></li>
+	    		<li><a href="javascript:;">作品</a></li>
+	    		<li><a href="javascript:;">博客</a></li>
+	    	</ul>
+	    	<div class="sub_menu" id="sub_menu">
+	    		<div>
+	    			<a href="javascript:;">最新动态</a>
+	    			<a href="javascript:;">活动</a>
+	    			<a href="javascript:;">报名试听</a>
+	    			<a href="javascript:;">学员反馈</a>
+	    		</div>
+	    		<div>
+	    			<a href="javascript:;">妙味讲师</a>
+	    			<a href="javascript:;">秒味理念</a>
+	    			<a href="javascript:;">报名</a>
+	    			<a href="javascript:;">反馈</a>
+	    		</div>
+	    		<div>
+	    			<a href="javascript:;">JS课程</a>
+	    			<a href="javascript:;">Vue.js课程</a>
+	    			<a href="javascript:;">React课程</a>
+	    			<a href="javascript:;">Angular课程</a>
+	    		</div>
+	    		<div>
+	    			<a href="javascript:;">最新博客</a>
+	    			<a href="javascript:;">学员博客</a>
+	    		</div>
+	    	</div>
+    	</div>
+    </body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style>
+        	div, ul, li{margin:0;padding:0;box-sizing:border-box;}
+        	li{list-style:none;}
+        	.content{width: 650px;margin:50px auto;}
+        	.top_list{overflow: hidden;}
+        	.top_list li{float: left;width: 80px;text-align: center;background: #ccc;padding:5px 10px;}
+        	.top_list li.active, .top_list li:hover{background: #ee9;}
+        	.subShow{position: relative;}
+        	.subShow div{position: absolute;left:0;top:0;display: none;}
+        	.subShow div.active{display: block;}
+        	.subShow img{height: 180px;float:left;display: none;}
+        	.subShow img.active{display: block;}
+        	.subShow ul{height:180px;display: inline-block;width: 100px;}
+        	.subShow li{width: 100%;height: 60px;line-height: 60px;text-align: center;background: #555;border-bottom: 1px solid #ccc;color:#fff;}
+        	.subShow li.active, .subShow li:hover{background: #900;}
+        </style>
+        <script src="base.js"></script>
+        <script>
+        	$(function(){
+        		var aDiv=$("subShow").getElementsByTagName("div");
+        		var aLi=$("top_list").getElementsByTagName("li");
+        		var aUl=$("subShow").getElementsByTagName("ul");
+        		var aImg=[],
+        			aLis=[];
+        		var num=0,
+        			num1=0;
+        		var timer=null;
+        		var timer2=null;
+	    		
+	    		function tab(){
+		    		for(var k=0;k<aDiv.length;k++){
+		    			aImg[k]=aDiv[k].getElementsByTagName("img");
+		    			aLis[k]=aUl[k].getElementsByTagName("li");
+		    			tab2(aImg[k],aLis[k],num1);
+		    		}
+		    	}
+	    		aLi[0].className='active';
+	    		aDiv[0].className='active';
+	    		tab(aLi,aDiv,num);
+	    		//tab2(aLi,aDiv);
+	    		//外层选项卡切换
+	    		timer=setInterval(function(){
+	    			//clearInterval(timer2);
+	    			num++
+	    			num%=aDiv.length;
+	    			tab2(aLi,aDiv,num);
+	    		},3000)
+	    		//内层选项卡切换
+	    		timer2=setInterval(function(){
+	    			//clearInterval(timer);
+	    			num1++
+	    			num1%=aLis[0].length;
+	    			tab()
+	    			
+	    		},1000)
+
+	    		function tab2(obj1,obj2,index){
+	    			for(var i=0;i<obj1.length;i++){
+	    				obj1[i].className='';
+	    				obj2[i].className='';
+	    			}
+	    			obj1[index].className='active';
+	    			obj2[index].className='active';
+	    		}
+        	})
+        </script>
+    </head>
+    <body>
+    <div class="content">
+    	<div class="show">
+    		<ul class="top_list" id="top_list">
+    			<li>菜单一</li>
+    			<li>菜单二</li>
+    		</ul>
+    		<div class="subShow" id="subShow">
+    			<div class="">
+    				<img src="img/j1.jpg" alt="">
+    				<img src="img/j2.jpg" alt="">
+    				<img src="img/j3.jpg" alt="">
+    				<ul>
+    					<li>图片一</li>
+    					<li>图片二</li>
+    					<li>图片三</li>
+    				</ul>
+    			</div>
+    			<div class="">
+    				<img src="img/j5.jpg" alt="">
+    				<img src="img/j6.jpg" alt="">
+    				<img src="img/j7.jpg" alt="">
+    				<ul>
+    					<li>图片4</li>
+    					<li>图片5</li>
+    					<li>图片6</li>
+    				</ul>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+    </body>
+</html>

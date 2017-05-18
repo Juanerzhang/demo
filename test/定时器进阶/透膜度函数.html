@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>透明度函数</title>
+        <style>
+        	#div{width: 100px;height: 100px;background: #f00;position: absolute;top:40px;left:10px;}
+        </style>
+        <script src="base.js"></script>
+        <script>
+        	$(function(){
+        		function oPacity(obj,speed,target,endFn){
+        			speed=parseFloat(getStyle(obj,'opacity'))*100>target?-speed:speed
+        			clearInterval(oPacity.timer)
+        			oPacity.timer=setInterval(function(){
+		        		degree=parseFloat(getStyle(obj,'opacity'))*100+speed;
+	        			//console.log(degree);
+	        			if(degree<target && speed<0 || degree>target && speed>0 ){
+	        				degree=target
+	        			}
+		        		obj.style.opacity=degree/100;
+		        		if(degree==target){
+		        			clearInterval(oPacity.timer);
+		        			endFn && endFn();
+		        		}
+	        		},100)
+				}
+        		$("btn1").onclick=function(){
+        			oPacity($("div"),10,20);
+                    doMove($("div"),'top',20,300)
+        		}
+        		$("btn2").onclick=function(){
+        			oPacity($("div"),5,100);
+                    
+        		}
+        	})
+        </script>
+    </head>
+    <body>
+    <input id="btn1" type="button" value="变淡">
+    <input id="btn2" type="button" value="变深">
+    <div id="div"></div>
+    </body>
+</html>

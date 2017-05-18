@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>div群来回游动</title>
+        <script src="base.js"></script>
+        <script>
+        	$(function(){
+        		var str='';
+        		var len=20;
+        		for(var i=0;i<len;i++){
+        			str+='<div style="width:50px;height:50px;background:#f00;position:absolute;top:0;left:'+i*60+'px"></div>'
+        		}
+        		document.body.innerHTML=str;
+        		var aDiv=document.getElementsByTagName("div");
+        		var num=0;
+        		var timer=null;
+        		var topB=true;
+        		document.onclick=function(){
+        			if(topB){
+        				clearInterval(timer);
+	        			timer=setInterval(function(){
+	        				doMove(aDiv[num],'top',12,400);
+	        				num++
+	        				if(num==len){
+	        					num=0;
+	        					clearInterval(timer);
+	        					topB=!topB;
+	        				}
+	        			},200)
+        			}else{
+        				clearInterval(timer);
+        				timer=setInterval(function(){
+	        				doMove(aDiv[num],'top',12,10);
+	        				num++
+	        				if(num==len){
+	        					num=0;
+	        					clearInterval(timer);
+	        					topB=!topB;
+	        				}
+	        			},200)
+        			}
+        		}
+        	})
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>
