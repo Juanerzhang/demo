@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>倒计时</title>
+        <style>
+        	span{display: inline-block;width: 120px;height: 30px;line-height: 30px;border:1px solid #eee;}
+        </style>
+    </head>
+    <body>
+    	<div id="demo">
+    		<input type="text" v-model="time">
+    		<button @click="begin">开始</button>
+    		<span>{{nowtime}}</span>
+    	</div>
+    </body>
+    <script src="vue.js"></script>
+    <script>
+    	var vm = new Vue({
+    		el:'#demo',
+    		data:{
+    			time:'',
+    			nowtime:''
+    		},
+    		methods:{
+    			begin:function(){
+    				var that=this
+    				clearInterval(that.timer)
+    				clearInterval(that.timer2)
+    				that.nowtime=that.time;
+    				that.timer=setInterval(function(){
+    					that.nowtime=that.nowtime-1000;
+    					if(that.nowtime<1000){
+    						that.timer2=setInterval(function(){
+    							that.nowtime=0;
+    						},that.nowtime)
+    						clearInterval(that.timer)
+    					}
+    				},1000);
+    			}
+    		}
+    	})
+    </script>
+</html>
